@@ -12,15 +12,14 @@ Contributors:
 ------------------------------------------------
 Comment
 
-count=0
-calc=0
+flag=0
 upper=26
 lower=26
 special=22
 numerics=10
 domain=0
 
-while [ $count -eq 0 ]
+while [ $flag -eq 0 ]
 do
     echo -e "\nEnter the password\n"
     read password
@@ -32,19 +31,15 @@ do
         echo "$password" | grep -q [0-9]
             if [ $? -eq 0 ]
             then
-                calc=1
                 echo "$password" | grep -q [A-Z]
                     if [ $? -eq 0 ]
                     then
-                        calc=2
                         echo "$password" | grep -q [a-z]   
                             if [ $? -eq 0 ]
                             then
-                                calc=3
                                 if [[ $password == *['!'@'#'\$%^\&*()_+]* ]]
                                 then
-                                    count=1
-                                    calc=4
+                                    flag=1
                                     echo -e "\nStrong Password\n"
                                 else
                                     echo -e "\nWeak Password\nInclude Special characters"
